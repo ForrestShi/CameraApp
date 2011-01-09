@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuremap [
+<!ELEMENT configuremap (configure)+>
+<!ELEMENT configure (#PCDATA)>
+<!ATTLIST configure name CDATA #REQUIRED>
+<!ATTLIST configure value CDATA #REQUIRED>
+]>
+<configuremap>
+  <configure name="NAME" value="ImageMagick"/>
+  <configure name="LIB_VERSION" value="0x661"/>
+  <configure name="LIB_VERSION_NUMBER" value="6,6,1,6"/>
+  <configure name="RELEASE_DATE" value="2010-05-01"/>
+  <configure name="CONFIGURE" value="./configure  'prefix=/Users/cloud/Desktop/tmp_target/imagemagick' '--host=i686-apple-darwin10' '--disable-largefile' '--with-quantum-depth=8' '--without-magick-plus-plus' '--without-perl' '--without-x' '--without-freetype' '--disable-shared' '--disable-openmp' '--without-bzlib' 'host_alias=i686-apple-darwin10' 'CC=' 'CFLAGS=-arch i386 -O3 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -DHAVE_J1=0 -DTARGET_OS_IPHONE' 'LDFLAGS=-L/usr/lib/ -L/usr/lib/ -arch i386 -03 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5' 'CPPFLAGS= -DHAVE_J1=0 -DTARGET_OS_IPHONE' 'CPP=' 'CXXFLAGS=-O3 -Wall -W -D_THREAD_SAFE -DHAVE_J1=0 -DTARGET_OS_IPHONE'"/>
+  <configure name="PREFIX" value="/Users/cloud/Desktop/tmp_target/imagemagick"/>
+  <configure name="EXEC-PREFIX" value="/Users/cloud/Desktop/tmp_target/imagemagick"/>
+  <configure name="VERSION" value="6.6.1"/>
+  <configure name="CC" value="gcc -std=gnu99 -std=gnu99"/>
+  <configure name="CFLAGS" value="-arch i386 -O3 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -DHAVE_J1=0 -DTARGET_OS_IPHONE -Wall -D_THREAD_SAFE"/>
+  <configure name="CPPFLAGS" value="-I/Users/cloud/Desktop/tmp_target/imagemagick/include/ImageMagick"/>
+  <configure name="PCFLAGS" value=""/>
+  <configure name="DEFS" value="-DHAVE_CONFIG_H"/>
+  <configure name="LDFLAGS" value="-L/Users/cloud/Desktop/tmp_target/imagemagick/lib -L/usr/lib/ -L/usr/lib/ -arch i386 -03 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -L/opt/local/lib"/>
+  <configure name="LIBS" value="-lMagickCore -ltiff -ljpeg -lpng -lz -lm -lpthread "/>
+  <configure name="CXX" value="g++"/>
+  <configure name="CXXFLAGS" value="-O3 -Wall -W -D_THREAD_SAFE -DHAVE_J1=0 -DTARGET_OS_IPHONE -D_THREAD_SAFE"/>
+  <configure name="DISTCHECK_CONFIG_FLAGS" value="'CC=' 'CFLAGS=-arch i386 -O3 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -DHAVE_J1=0 -DTARGET_OS_IPHONE' 'CPPFLAGS= -DHAVE_J1=0 -DTARGET_OS_IPHONE' 'LDFLAGS=-L/usr/lib/ -L/usr/lib/ -arch i386 -03 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5' --disable-deprecated --with-umem=no --with-bzlib=no --with-autotrace=no --with-fontconfig=no --with-freetype=no --with-gslib=no --with-fontpath= --with-rsvg=no --with-xml=no --with-perl=no"/>
+  <configure name="HOST" value="i686-apple-darwin10"/>
+  <configure name="DELEGATES" value="jpeg jng png tiff zlib"/>
+  <configure name="COPYRIGHT" value="Copyright (C) 1999-2010 ImageMagick Studio LLC"/>
+  <configure name="WEBSITE" value="http://www.imagemagick.org"/>
+  <configure name="QuantumDepth" value="8"/>
+</configuremap>

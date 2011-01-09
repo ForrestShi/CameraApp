@@ -41,6 +41,7 @@
 		18C6AFC71232C25F0095EE8F /* haarcascade_profileface.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18C6AFBF1232C25F0095EE8F /* haarcascade_profileface.xml */; };
 		18C6AFC81232C25F0095EE8F /* haarcascade_upperbody.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18C6AFC01232C25F0095EE8F /* haarcascade_upperbody.xml */; };
 		18C6AFCC1232C29F0095EE8F /* SLImageKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C6AFCB1232C29F0095EE8F /* SLImageKit.m */; };
+		18CEAA4D12D99116002AEF04 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 18CEAA4C12D99116002AEF04 /* README */; };
 		1D3623260D0F684500981E51 /* MyAVControllerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MyAVControllerAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -98,6 +99,7 @@
 		18C6AFCA1232C29F0095EE8F /* SLImageKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLImageKit.h; path = Classes/MyKits/SLImageKit.h; sourceTree = SOURCE_ROOT; };
 		18C6AFCB1232C29F0095EE8F /* SLImageKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLImageKit.m; path = Classes/MyKits/SLImageKit.m; sourceTree = SOURCE_ROOT; };
 		18CEAA1F12D98C98002AEF04 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		18CEAA4C12D99116002AEF04 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* MyAVControllerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAVControllerAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* MyAVControllerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAVControllerAppDelegate.m; sourceTree = "<group>"; };
@@ -142,19 +144,14 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				18CEAA4E12D99160002AEF04 /* ViewControllers */,
 				18C6AFC91232C29F0095EE8F /* MyKits */,
 				1D3623240D0F684500981E51 /* MyAVControllerAppDelegate.h */,
 				1D3623250D0F684500981E51 /* MyAVControllerAppDelegate.m */,
-				28D7ACF60DDB3853001CB0EB /* WelcomeViewController.h */,
-				28D7ACF70DDB3853001CB0EB /* WelcomeViewController.m */,
 				438CE42F11D2766D00CF55BC /* MyAVController.h */,
 				438CE43011D2766D00CF55BC /* MyAVController.m */,
-				18C6AEC1123239260095EE8F /* SettingViewController.h */,
-				18C6AEC2123239260095EE8F /* SettingViewController.m */,
 				18C6AED3123241090095EE8F /* SettingData.h */,
 				18C6AED4123241090095EE8F /* SettingData.m */,
-				18047D131235390B0084CB18 /* HelpViewController.h */,
-				18047D141235390B0084CB18 /* HelpViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -185,6 +182,19 @@
 			path = Classes/MyKits;
 			sourceTree = SOURCE_ROOT;
 		};
+		18CEAA4E12D99160002AEF04 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				18047D131235390B0084CB18 /* HelpViewController.h */,
+				18047D141235390B0084CB18 /* HelpViewController.m */,
+				18C6AEC1123239260095EE8F /* SettingViewController.h */,
+				18C6AEC2123239260095EE8F /* SettingViewController.m */,
+				28D7ACF60DDB3853001CB0EB /* WelcomeViewController.h */,
+				28D7ACF70DDB3853001CB0EB /* WelcomeViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +206,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				18CEAA4C12D99116002AEF04 /* README */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -345,6 +356,7 @@
 				18047D4A123544B50084CB18 /* Default.png in Resources */,
 				18047D4D123546F50084CB18 /* icon.png in Resources */,
 				18047D4E123546F50084CB18 /* icon512.png in Resources */,
+				18CEAA4D12D99116002AEF04 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
