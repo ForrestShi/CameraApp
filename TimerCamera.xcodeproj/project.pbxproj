@@ -1,0 +1,510 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18047C8D1234E3EB0084CB18 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047C8C1234E3EB0084CB18 /* start.png */; };
+		18047CD41234ED500084CB18 /* Setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047CD31234ED500084CB18 /* Setting.png */; };
+		18047CD61234EF6A0084CB18 /* film.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047CD51234EF6A0084CB18 /* film.png */; };
+		18047CE31234F50D0084CB18 /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047CE11234F50D0084CB18 /* background1.png */; };
+		18047CE41234F50D0084CB18 /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047CE21234F50D0084CB18 /* background2.png */; };
+		18047CEE1234FD4C0084CB18 /* ok.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047CED1234FD4C0084CB18 /* ok.png */; };
+		18047CF01234FDC90084CB18 /* ok1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047CEF1234FDC90084CB18 /* ok1.png */; };
+		18047CFB12352BE60084CB18 /* timer1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047CFA12352BE60084CB18 /* timer1.png */; };
+		18047D0D123537D30084CB18 /* help1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047D0B123537D30084CB18 /* help1.png */; };
+		18047D0E123537D30084CB18 /* help2.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047D0C123537D30084CB18 /* help2.png */; };
+		18047D11123537E10084CB18 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047D0F123537E10084CB18 /* info.png */; };
+		18047D12123537E10084CB18 /* info96g.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047D10123537E10084CB18 /* info96g.png */; };
+		18047D161235390B0084CB18 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18047D141235390B0084CB18 /* HelpViewController.m */; };
+		18047D171235390B0084CB18 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18047D151235390B0084CB18 /* HelpViewController.xib */; };
+		18047D2912353CFC0084CB18 /* help.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047D2812353CFC0084CB18 /* help.png */; };
+		18047D40123542020084CB18 /* help-all.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047D3F123542020084CB18 /* help-all.png */; };
+		18047D4A123544B50084CB18 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047D49123544B50084CB18 /* Default.png */; };
+		18047D4D123546F50084CB18 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047D4B123546F50084CB18 /* icon.png */; };
+		18047D4E123546F50084CB18 /* icon512.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047D4C123546F50084CB18 /* icon512.png */; };
+		188F238B1233964700EE22CA /* photoShutter.caf in Resources */ = {isa = PBXBuildFile; fileRef = 188F23891233964700EE22CA /* photoShutter.caf */; };
+		188F238C1233964700EE22CA /* Tink.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 188F238A1233964700EE22CA /* Tink.aiff */; };
+		18C6AEC4123239260095EE8F /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C6AEC2123239260095EE8F /* SettingViewController.m */; };
+		18C6AEC5123239260095EE8F /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C6AEC3123239260095EE8F /* SettingViewController.xib */; };
+		18C6AED5123241090095EE8F /* SettingData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C6AED4123241090095EE8F /* SettingData.m */; };
+		18C6AF771232B1F40095EE8F /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C6AF761232B1F40095EE8F /* home.png */; };
+		18C6AFC11232C25F0095EE8F /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18C6AFB91232C25F0095EE8F /* haarcascade_frontalface_alt.xml */; };
+		18C6AFC21232C25F0095EE8F /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18C6AFBA1232C25F0095EE8F /* haarcascade_frontalface_alt2.xml */; };
+		18C6AFC31232C25F0095EE8F /* haarcascade_frontalface_alt_tree.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18C6AFBB1232C25F0095EE8F /* haarcascade_frontalface_alt_tree.xml */; };
+		18C6AFC41232C25F0095EE8F /* haarcascade_frontalface_default.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18C6AFBC1232C25F0095EE8F /* haarcascade_frontalface_default.xml */; };
+		18C6AFC51232C25F0095EE8F /* haarcascade_fullbody.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18C6AFBD1232C25F0095EE8F /* haarcascade_fullbody.xml */; };
+		18C6AFC61232C25F0095EE8F /* haarcascade_lowerbody.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18C6AFBE1232C25F0095EE8F /* haarcascade_lowerbody.xml */; };
+		18C6AFC71232C25F0095EE8F /* haarcascade_profileface.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18C6AFBF1232C25F0095EE8F /* haarcascade_profileface.xml */; };
+		18C6AFC81232C25F0095EE8F /* haarcascade_upperbody.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18C6AFC01232C25F0095EE8F /* haarcascade_upperbody.xml */; };
+		18C6AFCC1232C29F0095EE8F /* SLImageKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C6AFCB1232C29F0095EE8F /* SLImageKit.m */; };
+		1D3623260D0F684500981E51 /* MyAVControllerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MyAVControllerAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2899E5220DE3E06400AC0155 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* WelcomeViewController.xib */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		28D7ACF80DDB3853001CB0EB /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* WelcomeViewController.m */; };
+		435D984B11D2089A009ADC4F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435D984A11D2089A009ADC4F /* AVFoundation.framework */; };
+		438CE3BC11D2717800CF55BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438CE3BB11D2717800CF55BC /* CoreGraphics.framework */; };
+		438CE3DF11D2718600CF55BC /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438CE3DE11D2718600CF55BC /* CoreVideo.framework */; };
+		438CE3E511D2719F00CF55BC /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438CE3E411D2719F00CF55BC /* CoreMedia.framework */; };
+		438CE43111D2766D00CF55BC /* MyAVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438CE43011D2766D00CF55BC /* MyAVController.m */; };
+		43D32BCE11D341F400AFA790 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D32BCD11D341F400AFA790 /* QuartzCore.framework */; };
+		43D32E3011D3A1DB00AFA790 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D32E2F11D3A1DB00AFA790 /* AudioToolbox.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		18047C8C1234E3EB0084CB18 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
+		18047CD31234ED500084CB18 /* Setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Setting.png; sourceTree = SOURCE_ROOT; };
+		18047CD51234EF6A0084CB18 /* film.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = film.png; sourceTree = SOURCE_ROOT; };
+		18047CE11234F50D0084CB18 /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background1.png; sourceTree = SOURCE_ROOT; };
+		18047CE21234F50D0084CB18 /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = SOURCE_ROOT; };
+		18047CED1234FD4C0084CB18 /* ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok.png; sourceTree = SOURCE_ROOT; };
+		18047CEF1234FDC90084CB18 /* ok1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok1.png; sourceTree = SOURCE_ROOT; };
+		18047CFA12352BE60084CB18 /* timer1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timer1.png; sourceTree = SOURCE_ROOT; };
+		18047D0B123537D30084CB18 /* help1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help1.png; sourceTree = SOURCE_ROOT; };
+		18047D0C123537D30084CB18 /* help2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help2.png; sourceTree = SOURCE_ROOT; };
+		18047D0F123537E10084CB18 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = SOURCE_ROOT; };
+		18047D10123537E10084CB18 /* info96g.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info96g.png; sourceTree = SOURCE_ROOT; };
+		18047D131235390B0084CB18 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		18047D141235390B0084CB18 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		18047D151235390B0084CB18 /* HelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HelpViewController.xib; path = Classes/HelpViewController.xib; sourceTree = "<group>"; };
+		18047D2812353CFC0084CB18 /* help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help.png; sourceTree = SOURCE_ROOT; };
+		18047D3F123542020084CB18 /* help-all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help-all.png"; sourceTree = SOURCE_ROOT; };
+		18047D49123544B50084CB18 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
+		18047D4B123546F50084CB18 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = SOURCE_ROOT; };
+		18047D4C123546F50084CB18 /* icon512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon512.png; sourceTree = SOURCE_ROOT; };
+		18047D64123550230084CB18 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		188F23891233964700EE22CA /* photoShutter.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = photoShutter.caf; sourceTree = SOURCE_ROOT; };
+		188F238A1233964700EE22CA /* Tink.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Tink.aiff; sourceTree = SOURCE_ROOT; };
+		18C6AEC1123239260095EE8F /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		18C6AEC2123239260095EE8F /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		18C6AEC3123239260095EE8F /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingViewController.xib; path = Classes/SettingViewController.xib; sourceTree = "<group>"; };
+		18C6AED3123241090095EE8F /* SettingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingData.h; sourceTree = "<group>"; };
+		18C6AED4123241090095EE8F /* SettingData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingData.m; sourceTree = "<group>"; };
+		18C6AF761232B1F40095EE8F /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = SOURCE_ROOT; };
+		18C6AFB91232C25F0095EE8F /* haarcascade_frontalface_alt.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_frontalface_alt.xml; path = ../3rdlibs/opencv_device/share/opencv/haarcascades/haarcascade_frontalface_alt.xml; sourceTree = SOURCE_ROOT; };
+		18C6AFBA1232C25F0095EE8F /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_frontalface_alt2.xml; path = ../3rdlibs/opencv_device/share/opencv/haarcascades/haarcascade_frontalface_alt2.xml; sourceTree = SOURCE_ROOT; };
+		18C6AFBB1232C25F0095EE8F /* haarcascade_frontalface_alt_tree.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_frontalface_alt_tree.xml; path = ../3rdlibs/opencv_device/share/opencv/haarcascades/haarcascade_frontalface_alt_tree.xml; sourceTree = SOURCE_ROOT; };
+		18C6AFBC1232C25F0095EE8F /* haarcascade_frontalface_default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_frontalface_default.xml; path = ../3rdlibs/opencv_device/share/opencv/haarcascades/haarcascade_frontalface_default.xml; sourceTree = SOURCE_ROOT; };
+		18C6AFBD1232C25F0095EE8F /* haarcascade_fullbody.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_fullbody.xml; path = ../3rdlibs/opencv_device/share/opencv/haarcascades/haarcascade_fullbody.xml; sourceTree = SOURCE_ROOT; };
+		18C6AFBE1232C25F0095EE8F /* haarcascade_lowerbody.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_lowerbody.xml; path = ../3rdlibs/opencv_device/share/opencv/haarcascades/haarcascade_lowerbody.xml; sourceTree = SOURCE_ROOT; };
+		18C6AFBF1232C25F0095EE8F /* haarcascade_profileface.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_profileface.xml; path = ../3rdlibs/opencv_device/share/opencv/haarcascades/haarcascade_profileface.xml; sourceTree = SOURCE_ROOT; };
+		18C6AFC01232C25F0095EE8F /* haarcascade_upperbody.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_upperbody.xml; path = ../3rdlibs/opencv_device/share/opencv/haarcascades/haarcascade_upperbody.xml; sourceTree = SOURCE_ROOT; };
+		18C6AFCA1232C29F0095EE8F /* SLImageKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLImageKit.h; path = Classes/MyKits/SLImageKit.h; sourceTree = SOURCE_ROOT; };
+		18C6AFCB1232C29F0095EE8F /* SLImageKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLImageKit.m; path = Classes/MyKits/SLImageKit.m; sourceTree = SOURCE_ROOT; };
+		18CEAA1F12D98C98002AEF04 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* MyAVControllerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAVControllerAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* MyAVControllerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAVControllerAppDelegate.m; sourceTree = "<group>"; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2899E5210DE3E06400AC0155 /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28D7ACF60DDB3853001CB0EB /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		28D7ACF70DDB3853001CB0EB /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* TimerCamera_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerCamera_Prefix.pch; sourceTree = "<group>"; };
+		430C1F0912197A2C00102B33 /* TimerCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimerCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		435D984A11D2089A009ADC4F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		438CE3BB11D2717800CF55BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		438CE3DE11D2718600CF55BC /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		438CE3E411D2719F00CF55BC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		438CE42F11D2766D00CF55BC /* MyAVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAVController.h; sourceTree = "<group>"; };
+		438CE43011D2766D00CF55BC /* MyAVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAVController.m; sourceTree = "<group>"; };
+		43D32BCD11D341F400AFA790 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		43D32E2F11D3A1DB00AFA790 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		8D1107310486CEB800E47090 /* TimerCamera-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TimerCamera-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; wrapsLines = 1; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				435D984B11D2089A009ADC4F /* AVFoundation.framework in Frameworks */,
+				438CE3BC11D2717800CF55BC /* CoreGraphics.framework in Frameworks */,
+				438CE3DF11D2718600CF55BC /* CoreVideo.framework in Frameworks */,
+				438CE3E511D2719F00CF55BC /* CoreMedia.framework in Frameworks */,
+				43D32BCE11D341F400AFA790 /* QuartzCore.framework in Frameworks */,
+				43D32E3011D3A1DB00AFA790 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				18C6AFC91232C29F0095EE8F /* MyKits */,
+				1D3623240D0F684500981E51 /* MyAVControllerAppDelegate.h */,
+				1D3623250D0F684500981E51 /* MyAVControllerAppDelegate.m */,
+				28D7ACF60DDB3853001CB0EB /* WelcomeViewController.h */,
+				28D7ACF70DDB3853001CB0EB /* WelcomeViewController.m */,
+				438CE42F11D2766D00CF55BC /* MyAVController.h */,
+				438CE43011D2766D00CF55BC /* MyAVController.m */,
+				18C6AEC1123239260095EE8F /* SettingViewController.h */,
+				18C6AEC2123239260095EE8F /* SettingViewController.m */,
+				18C6AED3123241090095EE8F /* SettingData.h */,
+				18C6AED4123241090095EE8F /* SettingData.m */,
+				18047D131235390B0084CB18 /* HelpViewController.h */,
+				18047D141235390B0084CB18 /* HelpViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		18C6AFB81232C25F0095EE8F /* haarcascades */ = {
+			isa = PBXGroup;
+			children = (
+				18C6AFB91232C25F0095EE8F /* haarcascade_frontalface_alt.xml */,
+				18C6AFBA1232C25F0095EE8F /* haarcascade_frontalface_alt2.xml */,
+				18C6AFBB1232C25F0095EE8F /* haarcascade_frontalface_alt_tree.xml */,
+				18C6AFBC1232C25F0095EE8F /* haarcascade_frontalface_default.xml */,
+				18C6AFBD1232C25F0095EE8F /* haarcascade_fullbody.xml */,
+				18C6AFBE1232C25F0095EE8F /* haarcascade_lowerbody.xml */,
+				18C6AFBF1232C25F0095EE8F /* haarcascade_profileface.xml */,
+				18C6AFC01232C25F0095EE8F /* haarcascade_upperbody.xml */,
+			);
+			name = haarcascades;
+			path = ../3rdlibs/opencv_device/share/opencv/haarcascades;
+			sourceTree = SOURCE_ROOT;
+		};
+		18C6AFC91232C29F0095EE8F /* MyKits */ = {
+			isa = PBXGroup;
+			children = (
+				18C6AFCA1232C29F0095EE8F /* SLImageKit.h */,
+				18C6AFCB1232C29F0095EE8F /* SLImageKit.m */,
+			);
+			name = MyKits;
+			path = Classes/MyKits;
+			sourceTree = SOURCE_ROOT;
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				430C1F0912197A2C00102B33 /* TimerCamera.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				18047D64123550230084CB18 /* Entitlements.plist */,
+				18CEAA1F12D98C98002AEF04 /* Entitlements.plist */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* TimerCamera_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				18047D4B123546F50084CB18 /* icon.png */,
+				18047D4C123546F50084CB18 /* icon512.png */,
+				18047D49123544B50084CB18 /* Default.png */,
+				18047D3F123542020084CB18 /* help-all.png */,
+				18047D2812353CFC0084CB18 /* help.png */,
+				18047D0F123537E10084CB18 /* info.png */,
+				18047D10123537E10084CB18 /* info96g.png */,
+				18047D0B123537D30084CB18 /* help1.png */,
+				18047D0C123537D30084CB18 /* help2.png */,
+				18047CFA12352BE60084CB18 /* timer1.png */,
+				18047CEF1234FDC90084CB18 /* ok1.png */,
+				18047CED1234FD4C0084CB18 /* ok.png */,
+				18047CE11234F50D0084CB18 /* background1.png */,
+				18047CE21234F50D0084CB18 /* background2.png */,
+				18047CD51234EF6A0084CB18 /* film.png */,
+				18047CD31234ED500084CB18 /* Setting.png */,
+				18047C8C1234E3EB0084CB18 /* start.png */,
+				188F23891233964700EE22CA /* photoShutter.caf */,
+				188F238A1233964700EE22CA /* Tink.aiff */,
+				18C6AFB81232C25F0095EE8F /* haarcascades */,
+				18C6AF761232B1F40095EE8F /* home.png */,
+				18047D151235390B0084CB18 /* HelpViewController.xib */,
+				2899E5210DE3E06400AC0155 /* WelcomeViewController.xib */,
+				18C6AEC3123239260095EE8F /* SettingViewController.xib */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* TimerCamera-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				438CE3BB11D2717800CF55BC /* CoreGraphics.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				435D984A11D2089A009ADC4F /* AVFoundation.framework */,
+				438CE3DE11D2718600CF55BC /* CoreVideo.framework */,
+				438CE3E411D2719F00CF55BC /* CoreMedia.framework */,
+				43D32BCD11D341F400AFA790 /* QuartzCore.framework */,
+				43D32E2F11D3A1DB00AFA790 /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* TimerCamera */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TimerCamera" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimerCamera;
+			productName = Flashcode;
+			productReference = 430C1F0912197A2C00102B33 /* TimerCamera.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TimerCamera" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* TimerCamera */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				2899E5220DE3E06400AC0155 /* WelcomeViewController.xib in Resources */,
+				18C6AEC5123239260095EE8F /* SettingViewController.xib in Resources */,
+				18C6AF771232B1F40095EE8F /* home.png in Resources */,
+				18C6AFC11232C25F0095EE8F /* haarcascade_frontalface_alt.xml in Resources */,
+				18C6AFC21232C25F0095EE8F /* haarcascade_frontalface_alt2.xml in Resources */,
+				18C6AFC31232C25F0095EE8F /* haarcascade_frontalface_alt_tree.xml in Resources */,
+				18C6AFC41232C25F0095EE8F /* haarcascade_frontalface_default.xml in Resources */,
+				18C6AFC51232C25F0095EE8F /* haarcascade_fullbody.xml in Resources */,
+				18C6AFC61232C25F0095EE8F /* haarcascade_lowerbody.xml in Resources */,
+				18C6AFC71232C25F0095EE8F /* haarcascade_profileface.xml in Resources */,
+				18C6AFC81232C25F0095EE8F /* haarcascade_upperbody.xml in Resources */,
+				188F238B1233964700EE22CA /* photoShutter.caf in Resources */,
+				188F238C1233964700EE22CA /* Tink.aiff in Resources */,
+				18047C8D1234E3EB0084CB18 /* start.png in Resources */,
+				18047CD41234ED500084CB18 /* Setting.png in Resources */,
+				18047CD61234EF6A0084CB18 /* film.png in Resources */,
+				18047CE31234F50D0084CB18 /* background1.png in Resources */,
+				18047CE41234F50D0084CB18 /* background2.png in Resources */,
+				18047CEE1234FD4C0084CB18 /* ok.png in Resources */,
+				18047CF01234FDC90084CB18 /* ok1.png in Resources */,
+				18047CFB12352BE60084CB18 /* timer1.png in Resources */,
+				18047D0D123537D30084CB18 /* help1.png in Resources */,
+				18047D0E123537D30084CB18 /* help2.png in Resources */,
+				18047D11123537E10084CB18 /* info.png in Resources */,
+				18047D12123537E10084CB18 /* info96g.png in Resources */,
+				18047D171235390B0084CB18 /* HelpViewController.xib in Resources */,
+				18047D2912353CFC0084CB18 /* help.png in Resources */,
+				18047D40123542020084CB18 /* help-all.png in Resources */,
+				18047D4A123544B50084CB18 /* Default.png in Resources */,
+				18047D4D123546F50084CB18 /* icon.png in Resources */,
+				18047D4E123546F50084CB18 /* icon512.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* MyAVControllerAppDelegate.m in Sources */,
+				28D7ACF80DDB3853001CB0EB /* WelcomeViewController.m in Sources */,
+				438CE43111D2766D00CF55BC /* MyAVController.m in Sources */,
+				18C6AEC4123239260095EE8F /* SettingViewController.m in Sources */,
+				18C6AED5123241090095EE8F /* SettingData.m in Sources */,
+				18C6AFCC1232C29F0095EE8F /* SLImageKit.m in Sources */,
+				18047D161235390B0084CB18 /* HelpViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		18047D5512354D7B0084CB18 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos4.0;
+			};
+			name = Distribution;
+		};
+		18047D5612354D7B0084CB18 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/workspace/myApps/photography/BestCamera/TimerCamera/Entitlements.plist";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TimerCamera_Prefix.pch;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../3rdlibs/opencv_device/include";
+				INFOPLIST_FILE = "TimerCamera-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = (
+					"-lz",
+					"-lstdc++",
+					"$(SRCROOT)/../3rdlibs/opencv_device/lib/libcv.a",
+					"$(SRCROOT)/../3rdlibs/opencv_device/lib/libcxcore.a",
+				);
+				PRODUCT_NAME = TimerCamera;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/workspace/myApps/photography/BestCamera/TimerCamera/Entitlements.plist";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TimerCamera_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../3rdlibs/opencv_device/include";
+				INFOPLIST_FILE = "TimerCamera-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				OTHER_LDFLAGS = (
+					"-lz",
+					"-lstdc++",
+					"$(SRCROOT)/../3rdlibs/opencv_device/lib/libcv.a",
+					"$(SRCROOT)/../3rdlibs/opencv_device/lib/libcxcore.a",
+				);
+				PRODUCT_NAME = TimerCamera;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/workspace/myApps/photography/BestCamera/TimerCamera/Entitlements.plist";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TimerCamera_Prefix.pch;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../3rdlibs/opencv_device/include";
+				INFOPLIST_FILE = "TimerCamera-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				OTHER_LDFLAGS = (
+					"-lz",
+					"-lstdc++",
+					"$(SRCROOT)/../3rdlibs/opencv_device/lib/libcv.a",
+					"$(SRCROOT)/../3rdlibs/opencv_device/lib/libcxcore.a",
+				);
+				PRODUCT_NAME = TimerCamera;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos4.0;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TimerCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+				18047D5612354D7B0084CB18 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TimerCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+				18047D5512354D7B0084CB18 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
