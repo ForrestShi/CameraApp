@@ -2,8 +2,6 @@
      File: AVCamViewController.h
  Abstract: View controller code that manages all the buttons in the main view (HUD, Swap, Record, Still, Grav) as well as the device controls and and session properties (Focus, Exposure, Power, Peak, etc.) that are displayed over the live capture window.
   Version: 1.0
-
- 
  */
 
 #import <UIKit/UIKit.h>

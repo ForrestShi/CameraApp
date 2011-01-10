@@ -2,4 +2,7 @@
 Jan.9.2011
 Commit first version from TimerCamera;
 Plan to extend :
--- 
+
+-- add opencv library;
+-- small window for preview filtered image;
+

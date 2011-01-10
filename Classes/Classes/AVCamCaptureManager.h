@@ -61,8 +61,7 @@ typedef NSInteger AVCamMirroringMode;
     
     // Capture Manager delegate
     id <AVCamCaptureManagerDelegate> _delegate;
-	
-	CGImageRef imageData;
+
 	//OpenCV Image Data
 	IplImage* pSrcImage;	
 	IplImage* pDstImage;
@@ -89,13 +88,6 @@ typedef NSInteger AVCamMirroringMode;
 @property (nonatomic,assign) id <AVCamCaptureManagerDelegate> delegate;
 @property (nonatomic,assign) id <PreviewImageViewDelegate> previewImageDelegate; 
 @property (nonatomic,readonly,getter=isRecording) BOOL recording;
-
-
-/*
- @ pointer to image data of current frame, used for further processing 
- */
-@property (nonatomic, assign) CGImageRef imageData;
-
 @property (nonatomic, assign) IplImage* pSrcImage;	
 @property (nonatomic, assign) IplImage* pDstImage;
 

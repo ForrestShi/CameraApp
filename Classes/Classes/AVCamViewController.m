@@ -356,11 +356,17 @@ const CGFloat hudBorderWidth = 1.f;
 -(void) configureNewPreviewImage:(CGImageRef)newImage{
 	//NSLog(@"configureNewPreviewImage");
 	if ([[NSThread currentThread] isMainThread]) {
-		//self.previewImageView.image = [UIImage imageWithCGImage: newImage];
-		UIImage* newPreImage = [[UIImage alloc] initWithCGImage:newImage];
-		CGImageRelease(newImage);
-		self.previewImageView.image = newPreImage;
-		[newPreImage release];
+		
+//		UIImage* newPreImage = [[UIImage alloc] initWithCGImage:newImage];
+//		CGImageRelease(newImage);
+//		self.previewImageView.image = newPreImage;
+//		[newPreImage release];
+		static CALayer* previewLayer = nil;
+		if (!previewLayer) {
+			previewLayer = [self.previewImageView layer];
+		}
+		previewLayer.contents = (id)newImage;
+
 	}else {
 		[self performSelectorOnMainThread:@selector(configureNewPreviewImage:) withObject:newImage waitUntilDone:NO];
 	}

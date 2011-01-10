@@ -67,6 +67,7 @@
     self = [super init];
     if (self != nil) {
         void (^deviceConnectedBlock)(NSNotification *) = ^(NSNotification *notification) {
+			NSLog(@"deviceConnectedBlock");
             AVCaptureSession *session = [self session];
             AVCaptureDeviceInput *newAudioInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self audioDevice] error:nil];
             AVCaptureDeviceInput *newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self backFacingCamera] error:nil];
@@ -96,6 +97,7 @@
                 [session startRunning];
         };
         void (^deviceDisconnectedBlock)(NSNotification *) = ^(NSNotification *notification) {
+			NSLog(@"deviceDisconnectedBlock");
             AVCaptureSession *session = [self session];
             
             [session beginConfiguration];
@@ -176,29 +178,17 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 	 UIKit is no thread safe, and as we are not in the main thread (remember we didn't use the main_queue)
 	 we use performSelectorOnMainThread to call our CALayer and tell it to display the CGImage.*/
 	//[self.customLayer performSelectorOnMainThread:@selector(setContents:) withObject: (id) self.imageData waitUntilDone:YES];
-	
-	
+
 	/* do some processing */
 	
 	CGImageRef newImageProecessed = [self processCurrentFrame:newImage]; 
-	
-	CGImageRelease(newImage);
+
 	
 	if ([_previewImageDelegate respondsToSelector:@selector(configureNewPreviewImage:)]) {
 		[_previewImageDelegate configureNewPreviewImage:newImageProecessed];
 	}
-	/*We display the result on the image view (We need to change the orientation of the image so that the video is displayed correctly).
-	 Same thing as for the CALayer we are not in the main thread so ...*/
-//	
-//	UIImage *image= [UIImage imageWithCGImage:newImage scale:1.0 orientation:UIImageOrientationRight];
-//	
-//	/*We relase the CGImageRef*/
-//	//CGImageRelease(self.imageData);
-//	CGImageRelease(newImage);
-//	
-//	
-//	[self.imageView performSelectorOnMainThread:@selector(setImage:) withObject:image waitUntilDone:YES];
-	
+	CGImageRelease(newImage);
+	CGImageRelease(newImageProecessed);
 	/*We unlock the  image buffer*/
 	CVPixelBufferUnlockBaseAddress(imageBuffer,0);
 	
@@ -275,7 +265,72 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     AVCaptureMovieFileOutput *movieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
     [self setMovieFileOutput:movieFileOutput];
     [movieFileOutput release];
+
+    
+    // Add inputs and output to the capture session, set the preset, and start it running
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+    
+    if ([session canAddInput:videoInput]) {
+        [session addInput:videoInput];
+    }
+    if ([session canAddInput:audioInput]) {
+        [session addInput:audioInput];
+    }
+    if ([session canAddOutput:movieFileOutput]) {
+        [session addOutput:movieFileOutput];
+        [self setMirroringMode:AVCamMirroringAuto];
+    }
+    if ([session canAddOutput:stillImageOutput]) {
+        [session addOutput:stillImageOutput];
+    }
+	// AVErrorRecordingSuccessfullyFinishedKey=false
+   // if ([session canAddOutput:captureOutput]) {
+//		[session addOutput:captureOutput];
+//	}
 	
+    [self setSessionPreset:sessionPreset];
+    
+    [self setSession:session];
+    
+    [session release];
+    
+    success = YES;
+    
+    id delegate = [self delegate];
+    if ([delegate respondsToSelector:@selector(deviceCountChanged)]) {
+        [delegate deviceCountChanged];
+    }
+    
+    return success;
+}
+
+#pragma mark videoDataOutput
+- (void) removeVideoDataOutput{
+	AVCaptureSession *session = [self session];
+	
+	[session beginConfiguration];
+	
+	if (self.videoDataOutput ) {
+		[session removeOutput:[self videoDataOutput]];
+	}
+	[session commitConfiguration];
+}
+
+- (void) addVideoDataOutput{
+	AVCaptureSession *session = [self session];
+	
+	[session beginConfiguration];
+	if (!self.videoDataOutput ) {
+		[self createVideoDataOutput];
+	}
+	if ([session canAddOutput:self.videoDataOutput]) {
+		[session addOutput:[self videoDataOutput]];
+	}
+	
+	[session commitConfiguration];
+}
+
+- (void) createVideoDataOutput{
 	/*We setupt the output*/
 	AVCaptureVideoDataOutput *captureOutput = [[AVCaptureVideoDataOutput alloc] init];
 	/*While a frame is processes in -captureOutput:didOutputSampleBuffer:fromConnection: delegate methods no other frames are added in the queue.
@@ -299,42 +354,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 	[captureOutput setVideoSettings:videoSettings]; 
 	[self setVideoDataOutput: captureOutput];
 	[captureOutput release];
-    
-    // Add inputs and output to the capture session, set the preset, and start it running
-    AVCaptureSession *session = [[AVCaptureSession alloc] init];
-    
-    if ([session canAddInput:videoInput]) {
-        [session addInput:videoInput];
-    }
-    if ([session canAddInput:audioInput]) {
-        [session addInput:audioInput];
-    }
-    if ([session canAddOutput:movieFileOutput]) {
-        [session addOutput:movieFileOutput];
-        [self setMirroringMode:AVCamMirroringAuto];
-    }
-    if ([session canAddOutput:stillImageOutput]) {
-        [session addOutput:stillImageOutput];
-    }
-    if ([session canAddOutput:captureOutput]) {
-		[session addOutput:captureOutput];
-	}
-	
-    [self setSessionPreset:sessionPreset];
-    
-    [self setSession:session];
-    
-    [session release];
-    
-    success = YES;
-    
-    id delegate = [self delegate];
-    if ([delegate respondsToSelector:@selector(deviceCountChanged)]) {
-        [delegate deviceCountChanged];
-    }
-    
-    return success;
 }
+
 
 - (BOOL) isRecording
 {
@@ -346,7 +367,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     if ([[UIDevice currentDevice] isMultitaskingSupported]) {
         [self setBackgroundRecordingID:[[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{}]];
     }
-    
+	[self removeVideoDataOutput];
+	
     AVCaptureConnection *videoConnection = [AVCamCaptureManager connectionWithMediaType:AVMediaTypeVideo fromConnections:[[self movieFileOutput] connections]];
     if ([videoConnection isVideoOrientationSupported]) {
         [videoConnection setVideoOrientation:[self orientation]];
@@ -354,11 +376,13 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
     [[self movieFileOutput] startRecordingToOutputFileURL:[self tempFileURL]
                                         recordingDelegate:self];
+	
 }
 
 - (void) stopRecording
 {
     [[self movieFileOutput] stopRecording];
+	[self addVideoDataOutput];
 }
 
 - (void) captureStillImage
