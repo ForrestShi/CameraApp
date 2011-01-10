@@ -120,6 +120,7 @@ const CGFloat hudBorderWidth = 1.f;
 
 - (void) dealloc
 {
+	self.previewImageView = nil;
     [self setNumberFormatter:nil];
     [self setCaptureManager:nil];
     [super dealloc];
@@ -136,6 +137,8 @@ const CGFloat hudBorderWidth = 1.f;
     [adjustingInfolayer setPosition:CGPointMake([adjustingInfolayer position].x, [adjustingInfolayer position].y + 12.f)];
     
     AVCamCaptureManager *captureManager = [[AVCamCaptureManager alloc] init];
+	captureManager.previewImageDelegate = self;
+	
     if ([captureManager setupSessionWithPreset:AVCaptureSessionPresetHigh error:&error]) {
         [self setCaptureManager:captureManager];
         
@@ -243,6 +246,7 @@ const CGFloat hudBorderWidth = 1.f;
     [self removeObserver:self forKeyPath:@"captureManager.videoInput.device.focusPointOfInterest"];
     [self removeObserver:self forKeyPath:@"captureManager.videoInput.device.exposurePointOfInterest"];
     
+	self.previewImageView = nil;
     [self setVideoPreviewView:nil];
     [self setCaptureVideoPreviewLayer:nil];
     [self setAdjustingInfoView:nil];
@@ -350,9 +354,13 @@ const CGFloat hudBorderWidth = 1.f;
 #pragma mark PreviewImageViewDelegate
 
 -(void) configureNewPreviewImage:(CGImageRef)newImage{
-	NSLog(@"configureNewPreviewImage");
+	//NSLog(@"configureNewPreviewImage");
 	if ([[NSThread currentThread] isMainThread]) {
-		_previewImageView.image = newImage;
+		//self.previewImageView.image = [UIImage imageWithCGImage: newImage];
+		UIImage* newPreImage = [[UIImage alloc] initWithCGImage:newImage];
+		CGImageRelease(newImage);
+		self.previewImageView.image = newPreImage;
+		[newPreImage release];
 	}else {
 		[self performSelectorOnMainThread:@selector(configureNewPreviewImage:) withObject:newImage waitUntilDone:NO];
 	}

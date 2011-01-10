@@ -59,6 +59,8 @@
 @synthesize backgroundRecordingID = _backgroundRecordingID;
 @synthesize delegate = _delegate;
 @dynamic recording;
+@synthesize pSrcImage,pDstImage;
+@synthesize previewImageDelegate = _previewImageDelegate;
 
 - (id) init
 {
@@ -137,6 +139,7 @@
     [self setAudioInput:nil];
     [self setMovieFileOutput:nil];
     [self setStillImageOutput:nil];
+	[self setVideoDataOutput:nil];
     [super dealloc];
 }
 
@@ -179,6 +182,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 	
 	CGImageRef newImageProecessed = [self processCurrentFrame:newImage]; 
 	
+	CGImageRelease(newImage);
+	
 	if ([_previewImageDelegate respondsToSelector:@selector(configureNewPreviewImage:)]) {
 		[_previewImageDelegate configureNewPreviewImage:newImageProecessed];
 	}
@@ -206,11 +211,12 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 	//init pSrcImage from currentFrame 
 	//create pDstImage 
 	
-	int width = CGImageGetWidth(currentFrame);
-	int height = CGImageGetHeight(currentFrame);
+	int width = CGImageGetWidth(currentFrame)/4;
+	int height = CGImageGetHeight(currentFrame)/4;
 	
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 	if (self.pSrcImage == nil ) {
+		NSLog(@"just call only one time ");
 		self.pSrcImage = cvCreateImage(cvSize(width, height), IPL_DEPTH_8U, 4);
 		self.pDstImage = cvCreateImage(cvSize(width, height), IPL_DEPTH_8U, 4);
 	}
