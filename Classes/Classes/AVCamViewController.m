@@ -1,7 +1,7 @@
 /*
-     File: AVCamViewController.m
+ File: AVCamViewController.m
  Abstract: View controller code that manages all the buttons in the main view (HUD, Swap, Record, Still, Grav) as well as the device controls and and session properties (Focus, Exposure, Power, Peak, etc.) that are displayed over the live capture window.
-  Version: 1.0
+ Version: 1.0
  
  
  */
@@ -79,6 +79,9 @@ const CGFloat hudBorderWidth = 1.f;
 @synthesize audioConnection = _audioConnection;
 @synthesize orientation = _orientation;
 @synthesize mirroring = _mirroring;
+@synthesize timerShotCount =_timerShotCount;
+@synthesize timerSecondsPerShot= _timerSecondsPerShot;
+@synthesize timerVoiceMode = _timerVoiceMode;
 @synthesize adjustingFocus = _adjustingFocus;
 @synthesize adjustingExposure = _adjustingExposure;
 @synthesize adjustingWhiteBalance = _adjustingWhiteBalance;
@@ -143,10 +146,11 @@ const CGFloat hudBorderWidth = 1.f;
         [self setCaptureManager:captureManager];
         
         AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:[captureManager session]];
-        UIView *view = [self videoPreviewView];
+		
+		UIView* view = [self videoPreviewView];
         CALayer *viewLayer = [view layer];
         [viewLayer setMasksToBounds:YES];
-
+		
         CGRect bounds = [view bounds];
         
         [captureVideoPreviewLayer setFrame:bounds];
@@ -174,14 +178,14 @@ const CGFloat hudBorderWidth = 1.f;
             
             [self drawFocusBoxAtPointOfInterest:screenCenter];
             [self drawExposeBoxAtPointOfInterest:screenCenter];        
-                        
+			
             [self performSelector:@selector(updateAudioLevels) withObject:nil afterDelay:0.1f];
             
             [self setHudHidden:YES];
             
             [captureManager setOrientation:AVCaptureVideoOrientationPortrait];
             [captureManager setDelegate:self];
-
+			
             NSUInteger cameraCount = [captureManager cameraCount];
             if (cameraCount < 1) {
                 [[self cameraToggleButton] setEnabled:NO];
@@ -356,21 +360,16 @@ const CGFloat hudBorderWidth = 1.f;
 -(void) configureNewPreviewImage:(CGImageRef)newImage{
 	//NSLog(@"configureNewPreviewImage");
 	if ([[NSThread currentThread] isMainThread]) {
-		
-//		UIImage* newPreImage = [[UIImage alloc] initWithCGImage:newImage];
-//		CGImageRelease(newImage);
-//		self.previewImageView.image = newPreImage;
-//		[newPreImage release];
 		static CALayer* previewLayer = nil;
 		if (!previewLayer) {
 			previewLayer = [self.previewImageView layer];
 		}
 		previewLayer.contents = (id)newImage;
-
+		
 	}else {
 		[self performSelectorOnMainThread:@selector(configureNewPreviewImage:) withObject:newImage waitUntilDone:NO];
 	}
-
+	
 }
 #pragma mark Toolbar Actions
 - (IBAction)hudViewToggle:(id)sender
@@ -657,6 +656,10 @@ const CGFloat hudBorderWidth = 1.f;
     [session commitConfiguration];
 }
 
+-(void)timerShotCountSelect:(id)sender{}
+-(void)timerSecondsPerShotSelect:(id)sender{}
+-(void)timerVoiceModeSelect:(id)sender{}
+
 @end
 
 @implementation AVCamViewController (InternalMethods)
@@ -689,7 +692,18 @@ const CGFloat hudBorderWidth = 1.f;
         [[self mirroring] setHidden:YES];        
     } else {
         NSInteger count = 0;
-        UIView *view = [self videoPreviewView];
+		// UIView *view = [self videoPreviewView];
+		
+		UIView *previewView = [self videoPreviewView];
+        static UIScrollView *view = nil;
+		if (!view) {
+			view = [[[UIScrollView alloc] initWithFrame:previewView.frame] autorelease];
+			view.scrollEnabled = YES;
+			view.showsVerticalScrollIndicator = UIScrollViewIndicatorStyleWhite;
+			view.contentSize = CGSizeMake(view.frame.size.width, view.frame.size.height*2);
+			[previewView addSubview:view];
+		}
+		
         AVCamCaptureManager *captureManager = [self captureManager];
         ExpandyButton *expandyButton;
         
@@ -713,7 +727,7 @@ const CGFloat hudBorderWidth = 1.f;
         } else {
             [expandyButton setHidden:YES];
         }
-
+		
         expandyButton = [self torch];        
         if ([captureManager hasTorch]) {
             if (expandyButton == nil) {
@@ -878,25 +892,101 @@ const CGFloat hudBorderWidth = 1.f;
             count++;
         }
         
-        expandyButton = [self mirroring];
-        if ([captureManager supportsMirroring] || [[self captureVideoPreviewLayer] isMirroringSupported]) {
-            if (expandyButton == nil) {
-                ExpandyButton *mirroring =  [[ExpandyButton alloc] initWithPoint:CGPointMake(8.f, 8.f + (40.f * count))
-                                                                           title:@"Mirror"
-                                                                     buttonNames:[NSArray arrayWithObjects:@"Off",@"On",@"Auto",nil]
-                                                                    selectedItem:2];
-                [mirroring addTarget:self action:@selector(adjustMirroring:) forControlEvents:UIControlEventValueChanged];
-                [view addSubview:mirroring];
-                [self setMirroring:mirroring];
-                [mirroring release];
-            } else {
-                CGRect frame = [expandyButton frame];
-                [expandyButton setFrame:CGRectMake(8.f, 8.f + (40.f * count), frame.size.width, frame.size.height)];
-                [expandyButton setHidden:NO];                
-            }
-        } else {
-            [expandyButton setHidden:YES];
-        }
+		{
+			expandyButton = [self mirroring];
+			if ([captureManager supportsMirroring] || [[self captureVideoPreviewLayer] isMirroringSupported]) {
+				if (expandyButton == nil) {
+					ExpandyButton *mirroring =  [[ExpandyButton alloc] initWithPoint:CGPointMake(8.f, 8.f + (40.f * count))
+																			   title:@"Mirror"
+																		 buttonNames:[NSArray arrayWithObjects:@"Off",@"On",@"Auto",nil]
+																		selectedItem:2];
+					[mirroring addTarget:self action:@selector(adjustMirroring:) forControlEvents:UIControlEventValueChanged];
+					[view addSubview:mirroring];
+					[self setMirroring:mirroring];
+					[mirroring release];
+				} else {
+					CGRect frame = [expandyButton frame];
+					[expandyButton setFrame:CGRectMake(8.f, 8.f + (40.f * count), frame.size.width, frame.size.height)];
+					[expandyButton setHidden:NO];                
+				}
+			} else {
+				[expandyButton setHidden:YES];
+			}
+			count++;
+		}
+		
+		{
+			expandyButton = [self timerShotCount];
+			if ([captureManager supportsTimer]) {
+				if (expandyButton == nil) {
+					ExpandyButton *timerShotCountButton =  [[ExpandyButton alloc] initWithPoint:CGPointMake(8.f, 8.f + (40.f * count))
+																						  title:@"Timer Shots"
+																					buttonNames:[NSArray arrayWithObjects:@"1",@"3",@"5",@"10",@"20",nil]
+																				   selectedItem:1];
+					[timerShotCountButton addTarget:self action:@selector(timerShotCountSelect:) forControlEvents:UIControlEventValueChanged];
+					[view addSubview:timerShotCountButton];
+					self.timerShotCount = timerShotCountButton;
+					[timerShotCountButton release];
+				} else {
+					CGRect frame = [expandyButton frame];
+					[expandyButton setFrame:CGRectMake(8.f, 8.f + (40.f * count), frame.size.width, frame.size.height)];
+					[expandyButton setHidden:NO];                
+				}
+				count++;
+			} else {
+				[expandyButton setHidden:YES];
+			}
+		}
+		
+		{
+			expandyButton = [self timerSecondsPerShot];
+			if ([captureManager supportsTimer]) {
+				if (expandyButton == nil) {
+					ExpandyButton *timerSecondsPerShot =  [[ExpandyButton alloc] initWithPoint:CGPointMake(8.f, 8.f + (40.f * count))
+																						 title:@"Timer Interval"
+																				   buttonNames:[NSArray arrayWithObjects:@"1s",@"3s",@"5s",@"7s",@"10s",nil]
+																				  selectedItem:1];
+					[timerSecondsPerShot addTarget:self action:@selector(timerSecondsPerShotSelect:) forControlEvents:UIControlEventValueChanged];
+					[view addSubview:timerSecondsPerShot];
+					self.timerSecondsPerShot = timerSecondsPerShot;
+					[timerSecondsPerShot release];
+				} else {
+					CGRect frame = [expandyButton frame];
+					[expandyButton setFrame:CGRectMake(8.f, 8.f + (40.f * count), frame.size.width, frame.size.height)];
+					[expandyButton setHidden:NO];                
+				}
+				count++;
+			} else {
+				[expandyButton setHidden:YES];
+			}
+		}
+		
+		{
+			expandyButton = [self timerVoiceMode];
+			if ([captureManager supportsTimer]) {
+				if (expandyButton == nil) {
+					ExpandyButton *timerVoiceMode =  [[ExpandyButton alloc] initWithPoint:CGPointMake(8.f, 8.f + (40.f * count))
+																					title:@"Timer Voice"
+																			  buttonNames:[NSArray arrayWithObjects:@"On",@"Off",nil]
+																			 selectedItem:1];
+					[timerVoiceMode addTarget:self action:@selector(timerVoiceModeSelect:) forControlEvents:UIControlEventValueChanged];
+					[view addSubview:timerVoiceMode];
+					self.timerVoiceMode = timerVoiceMode;
+					[timerVoiceMode release];
+				} else {
+					CGRect frame = [expandyButton frame];
+					[expandyButton setFrame:CGRectMake(8.f, 8.f + (40.f * count), frame.size.width, frame.size.height)];
+					[expandyButton setHidden:NO];                
+				}
+				//count++;
+			} else {
+				[expandyButton setHidden:YES];
+			}
+		}
+		
+		
+		
+		
     }
 }
 

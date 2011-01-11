@@ -33,6 +33,10 @@ UINavigationControllerDelegate> {
     ExpandyButton *_audioConnection;
     ExpandyButton *_orientation;
     ExpandyButton *_mirroring;
+	//Timer Camera 
+	ExpandyButton *_timerShotCount;
+	ExpandyButton *_timerSecondsPerShot;
+	ExpandyButton *_timerVoiceMode;
     
     UIView *_adjustingFocus;
     UIView *_adjustingExposure;
@@ -73,6 +77,9 @@ UINavigationControllerDelegate> {
 @property (nonatomic,retain) ExpandyButton *audioConnection;
 @property (nonatomic,retain) ExpandyButton *orientation;
 @property (nonatomic,retain) ExpandyButton *mirroring;
+@property (nonatomic,retain) ExpandyButton *timerShotCount;
+@property (nonatomic,retain) ExpandyButton *timerSecondsPerShot;
+@property (nonatomic,retain) ExpandyButton *timerVoiceMode;
 
 @property (nonatomic,retain) IBOutlet UIView *adjustingFocus;
 @property (nonatomic,retain) IBOutlet UIView *adjustingExposure;
@@ -105,5 +112,9 @@ UINavigationControllerDelegate> {
 - (void)presetChange:(id)sender;
 - (void)adjustOrientation:(id)sender;
 - (void)adjustMirroring:(id)sender;
+-(void)timerShotCountSelect:(id)sender;
+-(void)timerSecondsPerShotSelect:(id)sender;
+-(void)timerVoiceModeSelect:(id)sender;
+
 @end
 

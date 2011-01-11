@@ -764,6 +764,10 @@ bail:
             [[AVCamCaptureManager connectionWithMediaType:AVMediaTypeVideo fromConnections:[[self stillImageOutput] connections]] isVideoMirroringSupported];
 }
 
+- (BOOL) supportsTimer{
+	return YES;
+}
+
 - (AVCaptureAudioChannel *)audioChannel
 {
     return [[[AVCamCaptureManager connectionWithMediaType:AVMediaTypeAudio fromConnections:[[self movieFileOutput] connections]] audioChannels] lastObject];
