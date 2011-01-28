@@ -27,6 +27,10 @@
 		18047D4E123546F50084CB18 /* icon512.png in Resources */ = {isa = PBXBuildFile; fileRef = 18047D4C123546F50084CB18 /* icon512.png */; };
 		188F238B1233964700EE22CA /* photoShutter.caf in Resources */ = {isa = PBXBuildFile; fileRef = 188F23891233964700EE22CA /* photoShutter.caf */; };
 		188F238C1233964700EE22CA /* Tink.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 188F238A1233964700EE22CA /* Tink.aiff */; };
+		1897D17612F2EDF200417FBB /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1897D17212F2EDF100417FBB /* FlipsideViewController.m */; };
+		1897D17712F2EDF200417FBB /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1897D17312F2EDF100417FBB /* background1.png */; };
+		1897D17812F2EDF200417FBB /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1897D17412F2EDF200417FBB /* FlipsideView.xib */; };
+		1897D17912F2EDF200417FBB /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 1897D17512F2EDF200417FBB /* help.html */; };
 		18C6AEC5123239260095EE8F /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C6AEC3123239260095EE8F /* SettingViewController.xib */; };
 		18C6AF771232B1F40095EE8F /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C6AF761232B1F40095EE8F /* home.png */; };
 		18C6AFCC1232C29F0095EE8F /* SLImageKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C6AFCB1232C29F0095EE8F /* SLImageKit.m */; };
@@ -39,6 +43,11 @@
 		18CEAA6312D9938D002AEF04 /* haarcascade_lowerbody.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18CEAA5B12D9938D002AEF04 /* haarcascade_lowerbody.xml */; };
 		18CEAA6412D9938D002AEF04 /* haarcascade_profileface.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18CEAA5C12D9938D002AEF04 /* haarcascade_profileface.xml */; };
 		18CEAA6512D9938D002AEF04 /* haarcascade_upperbody.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18CEAA5D12D9938D002AEF04 /* haarcascade_upperbody.xml */; };
+		18D21F1B12F1565E00048784 /* tick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 18D21F1A12F1565E00048784 /* tick.aiff */; };
+		18D21FA912F1789E00048784 /* timer47.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D21FA812F1789E00048784 /* timer47.png */; };
+		18D21FE712F18EB400048784 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D21FE612F18EB400048784 /* iAd.framework */; };
+		18D223A312F2977B00048784 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D223A212F2977B00048784 /* MessageUI.framework */; };
+		18D223A612F2978900048784 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D223A512F2978900048784 /* CFNetwork.framework */; };
 		18FF0EB012D9DAEB00C1DDAB /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FF0EA412D9DAEB00C1DDAB /* MainWindow.xib */; };
 		18FF0EB112D9DAEB00C1DDAB /* AVCamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FF0EA512D9DAEB00C1DDAB /* AVCamViewController.xib */; };
 		18FF0EB212D9DAEB00C1DDAB /* ExpandyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FF0EA712D9DAEB00C1DDAB /* ExpandyButton.m */; };
@@ -78,14 +87,19 @@
 		18047D49123544B50084CB18 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		18047D4B123546F50084CB18 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = SOURCE_ROOT; };
 		18047D4C123546F50084CB18 /* icon512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon512.png; sourceTree = SOURCE_ROOT; };
-		18047D64123550230084CB18 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		1880F27712DEB169009D1237 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		188F23891233964700EE22CA /* photoShutter.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = photoShutter.caf; sourceTree = SOURCE_ROOT; };
 		188F238A1233964700EE22CA /* Tink.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Tink.aiff; sourceTree = SOURCE_ROOT; };
+		1897D17112F2EDF100417FBB /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
+		1897D17212F2EDF100417FBB /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
+		1897D17312F2EDF100417FBB /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background1.png; path = Classes/Classes/background1.png; sourceTree = "<group>"; };
+		1897D17412F2EDF200417FBB /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FlipsideView.xib; path = Classes/Classes/FlipsideView.xib; sourceTree = "<group>"; };
+		1897D17512F2EDF200417FBB /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = help.html; path = Classes/Classes/help.html; sourceTree = "<group>"; };
+		1897D1B812F2F3F000417FBB /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		18C6AEC3123239260095EE8F /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingViewController.xib; path = Classes/SettingViewController.xib; sourceTree = "<group>"; };
 		18C6AF761232B1F40095EE8F /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = SOURCE_ROOT; };
 		18C6AFCA1232C29F0095EE8F /* SLImageKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLImageKit.h; path = Classes/MyKits/SLImageKit.h; sourceTree = SOURCE_ROOT; };
 		18C6AFCB1232C29F0095EE8F /* SLImageKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLImageKit.m; path = Classes/MyKits/SLImageKit.m; sourceTree = SOURCE_ROOT; };
-		18CEAA1F12D98C98002AEF04 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		18CEAA4C12D99116002AEF04 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		18CEAA5612D9938D002AEF04 /* haarcascade_frontalface_alt.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt.xml; sourceTree = "<group>"; };
 		18CEAA5712D9938D002AEF04 /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = "<group>"; };
@@ -95,6 +109,11 @@
 		18CEAA5B12D9938D002AEF04 /* haarcascade_lowerbody.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_lowerbody.xml; sourceTree = "<group>"; };
 		18CEAA5C12D9938D002AEF04 /* haarcascade_profileface.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_profileface.xml; sourceTree = "<group>"; };
 		18CEAA5D12D9938D002AEF04 /* haarcascade_upperbody.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_upperbody.xml; sourceTree = "<group>"; };
+		18D21F1A12F1565E00048784 /* tick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = tick.aiff; sourceTree = "<group>"; };
+		18D21FA812F1789E00048784 /* timer47.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timer47.png; sourceTree = "<group>"; };
+		18D21FE612F18EB400048784 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		18D223A212F2977B00048784 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		18D223A512F2978900048784 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		18FF0EA412D9DAEB00C1DDAB /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Classes/Classes/MainWindow.xib; sourceTree = "<group>"; };
 		18FF0EA512D9DAEB00C1DDAB /* AVCamViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AVCamViewController.xib; path = Classes/Classes/AVCamViewController.xib; sourceTree = "<group>"; };
 		18FF0EA612D9DAEB00C1DDAB /* ExpandyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandyButton.h; sourceTree = "<group>"; };
@@ -121,7 +140,6 @@
 		43D32BCD11D341F400AFA790 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		43D32E2F11D3A1DB00AFA790 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* TimerCamera-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TimerCamera-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; wrapsLines = 1; };
-		95E785E612DA98AE00C83D37 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +156,9 @@
 				43D32BCE11D341F400AFA790 /* QuartzCore.framework in Frameworks */,
 				43D32E3011D3A1DB00AFA790 /* AudioToolbox.framework in Frameworks */,
 				18FF0EC512D9DB2B00C1DDAB /* AssetsLibrary.framework in Frameworks */,
+				18D21FE712F18EB400048784 /* iAd.framework in Frameworks */,
+				18D223A312F2977B00048784 /* MessageUI.framework in Frameworks */,
+				18D223A612F2978900048784 /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,9 +169,30 @@
 			isa = PBXGroup;
 			children = (
 				18FF0EA312D9DAEB00C1DDAB /* Classes */,
-				18CEAA4E12D99160002AEF04 /* ViewControllers */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		18BE434E12EABD9500F5EFB8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1897D17112F2EDF100417FBB /* FlipsideViewController.h */,
+				1897D17212F2EDF100417FBB /* FlipsideViewController.m */,
+				18FF0EA612D9DAEB00C1DDAB /* ExpandyButton.h */,
+				18FF0EA712D9DAEB00C1DDAB /* ExpandyButton.m */,
+				18FF0EAA12D9DAEB00C1DDAB /* AVCamViewController.h */,
+				18FF0EAB12D9DAEB00C1DDAB /* AVCamViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		18BE434F12EABDBE00F5EFB8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18FF0EAE12D9DAEB00C1DDAB /* AVCamPreviewView.h */,
+				18FF0EAF12D9DAEB00C1DDAB /* AVCamPreviewView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		18C6AFC91232C29F0095EE8F /* MyKits */ = {
@@ -162,13 +204,6 @@
 			name = MyKits;
 			path = Classes/MyKits;
 			sourceTree = SOURCE_ROOT;
-		};
-		18CEAA4E12D99160002AEF04 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = ViewControllers;
-			sourceTree = "<group>";
 		};
 		18CEAA5512D9938D002AEF04 /* haarcascades */ = {
 			isa = PBXGroup;
@@ -189,17 +224,13 @@
 		18FF0EA312D9DAEB00C1DDAB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				18BE434F12EABDBE00F5EFB8 /* Views */,
+				18BE434E12EABD9500F5EFB8 /* ViewControllers */,
 				18C6AFC91232C29F0095EE8F /* MyKits */,
-				18FF0EA612D9DAEB00C1DDAB /* ExpandyButton.h */,
-				18FF0EA712D9DAEB00C1DDAB /* ExpandyButton.m */,
 				18FF0EA812D9DAEB00C1DDAB /* AVCamAppDelegate.h */,
 				18FF0EA912D9DAEB00C1DDAB /* AVCamAppDelegate.m */,
-				18FF0EAA12D9DAEB00C1DDAB /* AVCamViewController.h */,
-				18FF0EAB12D9DAEB00C1DDAB /* AVCamViewController.m */,
 				18FF0EAC12D9DAEB00C1DDAB /* AVCamCaptureManager.h */,
 				18FF0EAD12D9DAEB00C1DDAB /* AVCamCaptureManager.m */,
-				18FF0EAE12D9DAEB00C1DDAB /* AVCamPreviewView.h */,
-				18FF0EAF12D9DAEB00C1DDAB /* AVCamPreviewView.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -215,15 +246,14 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				1897D1B812F2F3F000417FBB /* Entitlements.plist */,
 				18CEAA4C12D99116002AEF04 /* README */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				18047D64123550230084CB18 /* Entitlements.plist */,
-				18CEAA1F12D98C98002AEF04 /* Entitlements.plist */,
-				95E785E612DA98AE00C83D37 /* Entitlements.plist */,
+				1880F27712DEB169009D1237 /* Entitlements.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -240,6 +270,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1897D17312F2EDF100417FBB /* background1.png */,
+				1897D17412F2EDF200417FBB /* FlipsideView.xib */,
+				1897D17512F2EDF200417FBB /* help.html */,
+				18D21FA812F1789E00048784 /* timer47.png */,
+				18D21F1A12F1565E00048784 /* tick.aiff */,
 				18FF0EA412D9DAEB00C1DDAB /* MainWindow.xib */,
 				18FF0EA512D9DAEB00C1DDAB /* AVCamViewController.xib */,
 				18047D4B123546F50084CB18 /* icon.png */,
@@ -283,6 +318,9 @@
 				43D32BCD11D341F400AFA790 /* QuartzCore.framework */,
 				43D32E2F11D3A1DB00AFA790 /* AudioToolbox.framework */,
 				18FF0EC412D9DB2B00C1DDAB /* AssetsLibrary.framework */,
+				18D21FE612F18EB400048784 /* iAd.framework */,
+				18D223A212F2977B00048784 /* MessageUI.framework */,
+				18D223A512F2978900048784 /* CFNetwork.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -370,6 +408,11 @@
 				18CEAA6512D9938D002AEF04 /* haarcascade_upperbody.xml in Resources */,
 				18FF0EB012D9DAEB00C1DDAB /* MainWindow.xib in Resources */,
 				18FF0EB112D9DAEB00C1DDAB /* AVCamViewController.xib in Resources */,
+				18D21F1B12F1565E00048784 /* tick.aiff in Resources */,
+				18D21FA912F1789E00048784 /* timer47.png in Resources */,
+				1897D17712F2EDF200417FBB /* background1.png in Resources */,
+				1897D17812F2EDF200417FBB /* FlipsideView.xib in Resources */,
+				1897D17912F2EDF200417FBB /* help.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,13 +430,14 @@
 				18FF0EB412D9DAEB00C1DDAB /* AVCamViewController.m in Sources */,
 				18FF0EB512D9DAEB00C1DDAB /* AVCamCaptureManager.m in Sources */,
 				18FF0EB612D9DAEB00C1DDAB /* AVCamPreviewView.m in Sources */,
+				1897D17612F2EDF200417FBB /* FlipsideViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		18047D5512354D7B0084CB18 /* Distribution */ = {
+		1897D1B212F2F3A200417FBB /* Dist */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -405,37 +449,38 @@
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
 			};
-			name = Distribution;
+			name = Dist;
 		};
-		18047D5612354D7B0084CB18 /* Distribution */ = {
+		1897D1B312F2F3A200417FBB /* Dist */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/workspace/myGithubs/CameraApp/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/myGitHub/CameraApp/Entitlements.plist";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TimerCamera_Prefix.pch;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../3rdlibs/opencv_device/include";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/common/opencv_device/include";
 				INFOPLIST_FILE = "TimerCamera-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lstdc++",
-					"$(SRCROOT)/../3rdlibs/opencv_device/lib/libcv.a",
-					"$(SRCROOT)/../3rdlibs/opencv_device/lib/libcxcore.a",
+					"$(SRCROOT)/common/opencv_device/lib/libcv.a",
+					"$(SRCROOT)/common/opencv_device/lib/libcxcore.a",
 				);
 				PRODUCT_NAME = TimerCamera;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Distribution;
+			name = Dist;
 		};
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/workspace/myGithubs/CameraApp/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/myGitHub/CameraApp/Entitlements.plist";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -460,7 +505,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/workspace/myGithubs/CameraApp/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/myGitHub/CameraApp/Entitlements.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TimerCamera_Prefix.pch;
@@ -514,7 +559,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
-				18047D5612354D7B0084CB18 /* Distribution */,
+				1897D1B312F2F3A200417FBB /* Dist */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -524,7 +569,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
-				18047D5512354D7B0084CB18 /* Distribution */,
+				1897D1B212F2F3A200417FBB /* Dist */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

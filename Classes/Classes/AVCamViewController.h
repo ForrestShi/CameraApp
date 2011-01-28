@@ -5,14 +5,14 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 #import "AVCamCaptureManager.h"
 
 @class AVCamCaptureManager, AVCamPreviewView, ExpandyButton, AVCaptureVideoPreviewLayer;
 
 @protocol PreviewImageViewDelegate;
 
-@interface AVCamViewController : UIViewController <UIImagePickerControllerDelegate,
-PreviewImageViewDelegate,
+@interface AVCamViewController : UIViewController <PreviewImageViewDelegate,
 UINavigationControllerDelegate> {
     @private
     AVCamCaptureManager *_captureManager;
@@ -23,6 +23,7 @@ UINavigationControllerDelegate> {
     UIBarButtonItem *_recordButton;
     UIBarButtonItem *_stillButton;
     UIBarButtonItem *_gravityButton;
+	ExpandyButton *_cameraType;
     ExpandyButton *_flash;
     ExpandyButton *_torch;
     ExpandyButton *_focus;
@@ -33,10 +34,9 @@ UINavigationControllerDelegate> {
     ExpandyButton *_audioConnection;
     ExpandyButton *_orientation;
     ExpandyButton *_mirroring;
-	//Timer Camera 
-	ExpandyButton *_timerShotCount;
 	ExpandyButton *_timerSecondsPerShot;
-	ExpandyButton *_timerVoiceMode;
+	IBOutlet UIButton *_infoButton;
+
     
     UIView *_adjustingFocus;
     UIView *_adjustingExposure;
@@ -57,6 +57,8 @@ UINavigationControllerDelegate> {
     BOOL _hudHidden;
     CALayer *_focusBox;
     CALayer *_exposeBox;    
+	
+	ADBannerView *banner;
 }
 
 @property (nonatomic,retain) AVCamCaptureManager *captureManager;
@@ -67,6 +69,7 @@ UINavigationControllerDelegate> {
 @property (nonatomic,retain) IBOutlet UIBarButtonItem *recordButton;
 @property (nonatomic,retain) IBOutlet UIBarButtonItem *stillButton;
 @property (nonatomic,retain) IBOutlet UIBarButtonItem *gravityButton;
+@property (nonatomic,retain) ExpandyButton *cameraType;
 @property (nonatomic,retain) ExpandyButton *flash;
 @property (nonatomic,retain) ExpandyButton *torch;
 @property (nonatomic,retain) ExpandyButton *focus;
@@ -77,9 +80,10 @@ UINavigationControllerDelegate> {
 @property (nonatomic,retain) ExpandyButton *audioConnection;
 @property (nonatomic,retain) ExpandyButton *orientation;
 @property (nonatomic,retain) ExpandyButton *mirroring;
-@property (nonatomic,retain) ExpandyButton *timerShotCount;
 @property (nonatomic,retain) ExpandyButton *timerSecondsPerShot;
-@property (nonatomic,retain) ExpandyButton *timerVoiceMode;
+@property (nonatomic,retain) IBOutlet UIButton *infoButton;
+
+
 
 @property (nonatomic,retain) IBOutlet UIView *adjustingFocus;
 @property (nonatomic,retain) IBOutlet UIView *adjustingExposure;
@@ -96,12 +100,17 @@ UINavigationControllerDelegate> {
 @property (nonatomic,retain) IBOutlet UILabel *recordingDuration;
 @property (nonatomic,retain) IBOutlet UILabel *fileSize;
 
+@property(nonatomic, retain) IBOutlet ADBannerView *banner;
+
+
 #pragma mark Toolbar Actions
 - (IBAction)hudViewToggle:(id)sender;
 - (IBAction)record:(id)sender;
 - (IBAction)still:(id)sender;
 - (IBAction)cameraToggle:(id)sender;
 - (IBAction)cycleGravity:(id)sender;
+- (IBAction)viewPhoto:(id)sender;
+- (IBAction)showInfo:(id)sender;
 
 #pragma mark HUD Actions
 - (void)flashChange:(id)sender;
@@ -112,9 +121,7 @@ UINavigationControllerDelegate> {
 - (void)presetChange:(id)sender;
 - (void)adjustOrientation:(id)sender;
 - (void)adjustMirroring:(id)sender;
--(void)timerShotCountSelect:(id)sender;
--(void)timerSecondsPerShotSelect:(id)sender;
--(void)timerVoiceModeSelect:(id)sender;
+- (void)timerSecondsPerShotSelect:(id)sender;
 
 @end
 

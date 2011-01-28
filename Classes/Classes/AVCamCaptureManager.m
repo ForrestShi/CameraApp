@@ -8,6 +8,14 @@
 #import "AVCamCaptureManager.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "SLImageKit.h"
+
+
+enum
+{
+	kOneShot,       // user wants to take a delayed single shot
+	kRepeatingShot  // user wants to take repeating shots
+};
 
 
 @interface AVCamCaptureManager (AVCaptureFileOutputRecordingDelegate) <AVCaptureFileOutputRecordingDelegate>
@@ -61,6 +69,10 @@
 @dynamic recording;
 @synthesize pSrcImage,pDstImage;
 @synthesize previewImageDelegate = _previewImageDelegate;
+@synthesize  panoImageArray=_panoImageArray;
+@synthesize  calibratedSubImage = _calibratedSubImage;
+@synthesize timerSecPerShot,tickTimer, cameraTimer;
+
 
 - (id) init
 {
@@ -122,13 +134,25 @@
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         [self setDeviceConnectedObserver:[notificationCenter addObserverForName:AVCaptureDeviceWasConnectedNotification object:nil queue:nil usingBlock:deviceConnectedBlock]];
         [self setDeviceDisconnectedObserver:[notificationCenter addObserverForName:AVCaptureDeviceWasDisconnectedNotification object:nil queue:nil usingBlock:deviceDisconnectedBlock]];            
-    }
+  
+	
+		AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath:
+                                                    [[NSBundle mainBundle] pathForResource:@"tick"
+                                                                                    ofType:@"aiff"]],
+                                         &tickSound);
+
+		
+	}
     return self;
 }
 
 
 - (void) dealloc
 {
+	AudioServicesDisposeSystemSoundID(tickSound);
+	[cameraTimer release];
+    [tickTimer release];
+	
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter removeObserver:[self deviceConnectedObserver]];
     [notificationCenter removeObserver:[self deviceDisconnectedObserver]];
@@ -143,6 +167,13 @@
     [self setStillImageOutput:nil];
 	[self setVideoDataOutput:nil];
     [super dealloc];
+}
+
+-(void) setCalibratedSubImage:(IplImage*)newIpl{
+	if (newIpl !=  _calibratedSubImage) {
+		cvRelease(&_calibratedSubImage);
+		_calibratedSubImage = newIpl;
+	}
 }
 
 #pragma mark -
@@ -169,31 +200,123 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); 
     CGContextRef newContext = CGBitmapContextCreate(baseAddress, width, height, 8, bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
     CGImageRef newImage = CGBitmapContextCreateImage(newContext); 
-	
+	//CGLayerRef layerRef = CGLayerCreateWithContext(newContext, CGSizeMake(width, height), NULL);
     /*We release some components*/
     CGContextRelease(newContext); 
     CGColorSpaceRelease(colorSpace);
     
-    /*We display the result on the custom layer. All the display stuff must be done in the main thread because
-	 UIKit is no thread safe, and as we are not in the main thread (remember we didn't use the main_queue)
-	 we use performSelectorOnMainThread to call our CALayer and tell it to display the CGImage.*/
-	//[self.customLayer performSelectorOnMainThread:@selector(setContents:) withObject: (id) self.imageData waitUntilDone:YES];
-
 	/* do some processing */
 	
-	CGImageRef newImageProecessed = [self processCurrentFrame:newImage]; 
-
+	NSLog(@"timer secs %d", timerSecPerShot);
+	//NSLog(@"timer slient %d",timerSlient);
 	
-	if ([_previewImageDelegate respondsToSelector:@selector(configureNewPreviewImage:)]) {
-		[_previewImageDelegate configureNewPreviewImage:newImageProecessed];
+	
+	//CGImageRef newImageProecessed = [self processCurrentFrame:newImage]; 
+	//CGImageRef newImageProecessed = [self extractCalibratedImageFromOriginalImage:layerRef];
+	//UIImage*	newImageProecessed = [self opencvFaceDetect:[UIImage imageWithCGImage:newImage]];
+	BOOL detectFace = [self opencvFaceDetect:[UIImage imageWithCGImage:newImage]];
+	//if ([_previewImageDelegate respondsToSelector:@selector(configureNewPreviewImage:)] && newImageProecessed != nil) {
+	if (detectFace) {
+		
+		NSLog(@"set up faces ");
+		//[_previewImageDelegate configureNewPreviewImage: newImageProecessed.CGImage];
+		UIImageWriteToSavedPhotosAlbum([UIImage imageWithCGImage:newImage], nil, nil, nil);
+										
 	}
 	CGImageRelease(newImage);
-	CGImageRelease(newImageProecessed);
+	//CGLayerRelease(layerRef);
+	//CGImageRelease(newImageProecessed);
 	/*We unlock the  image buffer*/
 	CVPixelBufferUnlockBaseAddress(imageBuffer,0);
 	
 	[pool drain];
 } 
+
+- (CGImageRef) extractCalibratedImageFromOriginalImage:(CGLayerRef)currentFrame{
+	int lWidth = CGImageGetWidth(currentFrame)/4;
+	int lHeight = CGImageGetHeight(currentFrame);
+	if (self->_calibratedSubImage == NULL) {
+		_calibratedSubImage = cvCreateImage(cvSize(lWidth, lHeight), IPL_DEPTH_8U, 3);
+	}
+	
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	
+	CGContextRef contextRef = CGBitmapContextCreate(_calibratedSubImage->imageData, lWidth, lHeight, _calibratedSubImage->depth,
+														_calibratedSubImage->widthStep, colorSpace, 
+													kCGImageAlphaPremultipliedLast|kCGBitmapByteOrderDefault);
+	CGContextDrawLayerInRect(contextRef, CGRectMake(0, 0, lWidth, lHeight), currentFrame); // (contextRef, CGRectMake(0, 0, lWidth, lHeight), currentFrame);
+	
+	CGContextRelease(contextRef);
+	CGColorSpaceRelease(colorSpace);
+	return [SLImageKit CGImageFromIplImage:_calibratedSubImage];
+}
+
+- (BOOL) opencvFaceDetect:(UIImage *)faceImage  {
+	if(faceImage) {
+		cvSetErrMode(CV_ErrModeParent);
+		
+		IplImage *image = [SLImageKit CreateIplImageFromUIImage:faceImage];
+		
+		// Scaling down
+		IplImage *small_image = cvCreateImage(cvSize(image->width/2,image->height/2), IPL_DEPTH_8U, 3);
+		cvPyrDown(image, small_image, CV_GAUSSIAN_5x5);
+		int scale = 2;
+		
+		// Load XML
+		NSString *path = [[NSBundle mainBundle] pathForResource:@"haarcascade_frontalface_default" ofType:@"xml"];
+		CvHaarClassifierCascade* cascade = (CvHaarClassifierCascade*)cvLoad([path cStringUsingEncoding:NSASCIIStringEncoding], NULL, NULL, NULL);
+		CvMemStorage* storage = cvCreateMemStorage(0);
+		
+		// Detect faces and draw rectangle on them
+		CvSeq* faces = cvHaarDetectObjects(small_image, cascade, storage, 1.2f, 2, CV_HAAR_DO_CANNY_PRUNING, cvSize(20, 20));
+		cvReleaseImage(&small_image);
+		
+		// Create canvas to show the results
+	//	CGImageRef imageRef = faceImage.CGImage;
+//		CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+//		CGContextRef contextRef = CGBitmapContextCreate(NULL, faceImage.size.width, faceImage.size.height,
+//														8, faceImage.size.width * 4,
+//														colorSpace, kCGImageAlphaPremultipliedLast|kCGBitmapByteOrderDefault);
+//		CGContextDrawImage(contextRef, CGRectMake(0, 0, faceImage.size.width, faceImage.size.height), imageRef);
+//		
+//		CGContextSetLineWidth(contextRef, 4);
+//		CGContextSetRGBStrokeColor(contextRef, 0.0, 1.0, 1.0, 0.5);
+//		CGRect face_rect,face_rect0;
+//		UIImage* face = nil;
+		BOOL returnValue = FALSE;
+		// Draw results on the iamge
+//		for(int i = 0; i < faces->total; i++) {
+//			NSLog(@"detected face %d\n", faces->total );
+//			NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+//			
+//			// Calc the rect of faces
+//			CvRect cvrect = *(CvRect*)cvGetSeqElem(faces, i);
+//			face_rect0 = CGRectMake(cvrect.x * scale, cvrect.y * scale, cvrect.width * scale, cvrect.height * scale);
+//			face_rect = CGContextConvertRectToDeviceSpace(contextRef, face_rect0);
+//			
+////			CGContextStrokeRect(contextRef, face_rect);
+////			face = [UIImage imageWithCGImage: CGImageCreateWithImageInRect(imageRef, face_rect0)];	
+////			UIImageWriteToSavedPhotosAlbum(face, nil, nil, nil);
+//			returnValue = TRUE;
+//			[pool release];
+//		}
+		
+		if (faces->total > 0) {
+			returnValue = TRUE;
+		}
+		
+//		
+//		
+//		CGContextRelease(contextRef);
+//		CGColorSpaceRelease(colorSpace);
+		
+		cvReleaseMemStorage(&storage);
+		cvReleaseHaarClassifierCascade(&cascade);
+		
+		//[self hideProgressIndicator];
+		return returnValue;//[face autorelease];
+	}
+}
 
 
 - (CGImageRef) processCurrentFrame:(CGImageRef)currentFrame{
@@ -266,6 +389,30 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [self setMovieFileOutput:movieFileOutput];
     [movieFileOutput release];
 
+	/*We setupt the output*/
+	AVCaptureVideoDataOutput *captureOutput = [[AVCaptureVideoDataOutput alloc] init];
+	/*While a frame is processes in -captureOutput:didOutputSampleBuffer:fromConnection: delegate methods no other frames are added in the queue.
+	 If you don't want this behaviour set the property to NO */
+	captureOutput.alwaysDiscardsLateVideoFrames = YES; 
+	/*We specify a minimum duration for each frame (play with this settings to avoid having too many frames waiting
+	 in the queue because it can cause memory issues). It is similar to the inverse of the maximum framerate.
+	 In this example we set a min frame duration of 1/10 seconds so a maximum framerate of 10fps. We say that
+	 we are not able to process more than 10 frames per second.*/
+	//captureOutput.minFrameDuration = CMTimeMake(1, 10);
+	
+	/*We create a serial queue to handle the processing of our frames*/
+	dispatch_queue_t queue;
+	queue = dispatch_queue_create("cameraQueue", NULL);
+	[captureOutput setSampleBufferDelegate:self queue:queue];
+	dispatch_release(queue);
+	// Set the video output to store frame in BGRA (It is supposed to be faster)
+	NSString* key = (NSString*)kCVPixelBufferPixelFormatTypeKey; 
+	NSNumber* value = [NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA]; 
+	NSDictionary* videoSettings = [NSDictionary dictionaryWithObject:value forKey:key]; 
+	[captureOutput setVideoSettings:videoSettings]; 
+	[self setVideoDataOutput: captureOutput];
+	[captureOutput release];
+	
     
     // Add inputs and output to the capture session, set the preset, and start it running
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
@@ -283,8 +430,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     if ([session canAddOutput:stillImageOutput]) {
         [session addOutput:stillImageOutput];
     }
-	// AVErrorRecordingSuccessfullyFinishedKey=false
-   // if ([session canAddOutput:captureOutput]) {
+	// // issue when recording to file : AVErrorRecordingSuccessfullyFinishedKey=false
+//    if ([session canAddOutput:captureOutput]) {
 //		[session addOutput:captureOutput];
 //	}
 	
@@ -382,18 +529,20 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 - (void) stopRecording
 {
     [[self movieFileOutput] stopRecording];
-	[self addVideoDataOutput];
+	//[self addVideoDataOutput];
 }
 
 - (void) captureStillImage
 {
-    AVCaptureConnection *videoConnection = [AVCamCaptureManager connectionWithMediaType:AVMediaTypeVideo fromConnections:[[self stillImageOutput] connections]];
-    if ([videoConnection isVideoOrientationSupported]) {
-        [videoConnection setVideoOrientation:[self orientation]];
-    }
-    
+	AVCaptureConnection *videoConnection = [AVCamCaptureManager connectionWithMediaType:AVMediaTypeVideo fromConnections:[[self stillImageOutput] connections]];
+	if ([videoConnection isVideoOrientationSupported]) {
+		[videoConnection setVideoOrientation:[UIDevice currentDevice].orientation];
+	}
+	
+	
     [[self stillImageOutput] captureStillImageAsynchronouslyFromConnection:videoConnection
                                                          completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
+													
                                                              if (imageDataSampleBuffer != NULL) {
                                                                  NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                                                                  UIImage *image = [[UIImage alloc] initWithData:imageData];                                                                 
@@ -417,6 +566,121 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                                                                  }
                                                              }
                                                          }];
+}
+
+#pragma mark Timer Camera 
+
+// gets called by our delayed camera shot timer to play a tick noise
+- (void)tickFire:(NSTimer *)timer
+{
+	AudioServicesPlaySystemSound(tickSound);
+}
+
+// gets called by our repettive timer to take a picture
+- (void)timedPhotoFire:(NSTimer *)timer
+{
+    [self captureStillImage];
+    
+    NSInteger cameraAction = [self.cameraTimer.userInfo integerValue];
+    switch (cameraAction)
+    {
+        case kOneShot:
+        {
+            // timer fired for a delayed single shot
+            [self.cameraTimer invalidate];
+            cameraTimer = nil;
+            
+            [self.tickTimer invalidate];
+            tickTimer = nil;
+            
+            break;
+        }
+            
+        case kRepeatingShot:
+        {
+            break;
+        }
+    }
+}
+
+// give at least 3 seconds due to reduce "busy" error 
+- (NSInteger) timerSecPerShot
+{
+	if (timerSecPerShot < 3) {
+		timerSecPerShot = 3;
+	}
+	return timerSecPerShot;
+}
+
+- (void)captureStillImageWithTimer
+{
+	id delegate = [self delegate];
+	if ([delegate respondsToSelector:@selector(timerCaptureBegan)]) {
+		[delegate timerCaptureBegan];
+	}
+	
+    if (cameraTimer != nil){
+        [cameraTimer invalidate];
+		self.cameraTimer = nil;
+	}
+    cameraTimer = [NSTimer scheduledTimerWithTimeInterval:self.timerSecPerShot
+                                                   target:self
+                                                 selector:@selector(timedPhotoFire:)
+                                                 userInfo:[NSNumber numberWithInt:kRepeatingShot]
+                                                  repeats:YES];
+	
+    // start the timer to sound off a tick every 1 second (sound effect before a timed picture is taken)
+    if (tickTimer != nil){
+        [tickTimer invalidate];
+		self.tickTimer = nil;
+	}
+    tickTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+												 target:self
+											   selector:@selector(tickFire:)
+											   userInfo:nil
+												repeats:YES];
+}
+
+- (void) stopCaptureStillImageWithTimer
+{
+	id delegate = [self delegate];
+	if ([delegate respondsToSelector:@selector(timerCaptureFinished)]) {
+		[delegate timerCaptureFinished];
+	}
+	
+	if (cameraTimer != nil) {
+		[cameraTimer invalidate];
+		cameraTimer = nil;
+	}
+	if (tickTimer != nil){
+        [tickTimer invalidate];
+		tickTimer = nil;
+	}
+}
+
+- (BOOL) isCaptureStillImageWithTimer
+{
+	if (cameraTimer != nil && [cameraTimer isValid]) {
+		return YES;
+	}else {
+		return NO;
+	}
+}
+
+
+- (BOOL) hasMultiCamera
+{
+	return [self cameraCount]>1? YES:NO; 
+}
+
+- (int) cameraPosition
+{
+	AVCaptureDevicePosition position = [[[self videoInput] device] position];
+	if (position == AVCaptureDevicePositionBack) {
+		return 0;
+	}else {
+		return 1;
+	}	
 }
 
 - (BOOL) cameraToggle

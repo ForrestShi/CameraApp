@@ -20,6 +20,8 @@ typedef NSInteger AVCamMirroringMode;
 @protocol AVCamCaptureManagerDelegate
 
 @optional
+- (void) timerCaptureBegan;
+- (void) timerCaptureFinished;
 - (void) captureStillImageFailedWithError:(NSError *)error;
 - (void) acquiringDeviceLockFailedWithError:(NSError *)error;
 - (void) cannotWriteToAssetLibrary;
@@ -61,15 +63,24 @@ typedef NSInteger AVCamMirroringMode;
     
     // Capture Manager delegate
     id <AVCamCaptureManagerDelegate> _delegate;
+	// Preview Filtered frame 
+	id <PreviewImageViewDelegate> _previewImageDelegate; 
 
 	//OpenCV Image Data
 	IplImage* pSrcImage;	
 	IplImage* pDstImage;
+
+
+	//Pano 
+	NSMutableArray* _panoImageArray;
+	IplImage*	_calibratedSubImage;
 	
-	SystemSoundID timerSoundID;
-	SystemSoundID shutterSoundID;
+	//Timer
+	NSInteger timerSecPerShot;
 	
-	id <PreviewImageViewDelegate> _previewImageDelegate; 
+	NSTimer *tickTimer;
+    NSTimer *cameraTimer;
+    SystemSoundID tickSound;
 }
 
 @property (nonatomic,readonly,retain) AVCaptureSession *session;
@@ -90,11 +101,21 @@ typedef NSInteger AVCamMirroringMode;
 @property (nonatomic,readonly,getter=isRecording) BOOL recording;
 @property (nonatomic, assign) IplImage* pSrcImage;	
 @property (nonatomic, assign) IplImage* pDstImage;
+@property (nonatomic, retain) NSMutableArray* panoImageArray;
+@property (nonatomic, assign) IplImage*	calibratedSubImage;
+
+/****  Timer Camera ************/
+@property (nonatomic, assign) NSInteger timerSecPerShot;
+@property (nonatomic, retain) NSTimer *tickTimer;
+@property (nonatomic, retain) NSTimer *cameraTimer;
 
 - (BOOL) setupSessionWithPreset:(NSString *)sessionPreset error:(NSError **)error;
 - (void) startRecording;
 - (void) stopRecording;
 - (void) captureStillImage;
+- (void) captureStillImageWithTimer;
+- (BOOL) isCaptureStillImageWithTimer;
+- (void) stopCaptureStillImageWithTimer;
 - (BOOL) cameraToggle;
 - (NSUInteger) cameraCount;
 - (NSUInteger) micCount;
